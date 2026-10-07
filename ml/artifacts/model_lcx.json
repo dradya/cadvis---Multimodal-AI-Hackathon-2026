@@ -1,0 +1,985 @@
+{
+  "target": "LCX",
+  "features": [
+    "age",
+    "weight",
+    "length",
+    "sex",
+    "bmi",
+    "dm",
+    "htn",
+    "current_smoker",
+    "ex_smoker",
+    "fh",
+    "obesity",
+    "crf",
+    "cva",
+    "airway_disease",
+    "thyroid_disease",
+    "chf",
+    "dlp",
+    "bp",
+    "pr",
+    "edema",
+    "weak_peripheral_pulse",
+    "lung_rales",
+    "systolic_murmur",
+    "diastolic_murmur",
+    "typical_chest_pain",
+    "dyspnea",
+    "function_class",
+    "atypical",
+    "nonanginal",
+    "exertional_cp",
+    "lowth_ang",
+    "q_wave",
+    "st_elevation",
+    "st_depression",
+    "tinversion",
+    "lvh",
+    "poor_r_progression",
+    "bbb",
+    "fbs",
+    "cr",
+    "tg",
+    "ldl",
+    "hdl",
+    "bun",
+    "esr",
+    "hb",
+    "k",
+    "na",
+    "wbc",
+    "lymph",
+    "neut",
+    "plt",
+    "ef_tte",
+    "region_rwma",
+    "vhd"
+  ],
+  "meta": [
+    {
+      "name": "age",
+      "type": "number",
+      "default": 57.0,
+      "min": 30.0,
+      "max": 86.0,
+      "mean": 58.570247933884296,
+      "scale": 10.326749703689977,
+      "encoded": [
+        "age"
+      ]
+    },
+    {
+      "name": "weight",
+      "type": "number",
+      "default": 74.0,
+      "min": 48.0,
+      "max": 108.0,
+      "mean": 73.90082644628099,
+      "scale": 11.606072049056719,
+      "encoded": [
+        "weight"
+      ]
+    },
+    {
+      "name": "length",
+      "type": "number",
+      "default": 165.0,
+      "min": 140.0,
+      "max": 188.0,
+      "mean": 164.64462809917356,
+      "scale": 9.454422642674585,
+      "encoded": [
+        "length"
+      ]
+    },
+    {
+      "name": "sex",
+      "type": "category",
+      "default": "Male",
+      "options": [
+        "Female",
+        "Male"
+      ],
+      "encoded": [
+        "sex=Female",
+        "sex=Male"
+      ]
+    },
+    {
+      "name": "bmi",
+      "type": "number",
+      "default": 26.824385252677875,
+      "min": 18.115412710007302,
+      "max": 40.90065778377467,
+      "mean": 27.3253821657679,
+      "scale": 4.1399615864400765,
+      "encoded": [
+        "bmi"
+      ]
+    },
+    {
+      "name": "dm",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.29338842975206614,
+      "scale": 0.4553149009638089,
+      "encoded": [
+        "dm"
+      ]
+    },
+    {
+      "name": "htn",
+      "type": "number",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.5743801652892562,
+      "scale": 0.4944366400374702,
+      "encoded": [
+        "htn"
+      ]
+    },
+    {
+      "name": "current_smoker",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.21487603305785125,
+      "scale": 0.41073631867071664,
+      "encoded": [
+        "current_smoker"
+      ]
+    },
+    {
+      "name": "ex_smoker",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0371900826446281,
+      "scale": 0.18922732465876546,
+      "encoded": [
+        "ex_smoker"
+      ]
+    },
+    {
+      "name": "fh",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.1487603305785124,
+      "scale": 0.35585206845638,
+      "encoded": [
+        "fh"
+      ]
+    },
+    {
+      "name": "obesity",
+      "type": "category",
+      "default": "Y",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "obesity=N",
+        "obesity=Y"
+      ]
+    },
+    {
+      "name": "crf",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "crf=N",
+        "crf=Y"
+      ]
+    },
+    {
+      "name": "cva",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "cva=N",
+        "cva=Y"
+      ]
+    },
+    {
+      "name": "airway_disease",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "airway_disease=N",
+        "airway_disease=Y"
+      ]
+    },
+    {
+      "name": "thyroid_disease",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "thyroid_disease=N",
+        "thyroid_disease=Y"
+      ]
+    },
+    {
+      "name": "chf",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "chf=N",
+        "chf=Y"
+      ]
+    },
+    {
+      "name": "dlp",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "dlp=N",
+        "dlp=Y"
+      ]
+    },
+    {
+      "name": "bp",
+      "type": "number",
+      "default": 130.0,
+      "min": 90.0,
+      "max": 190.0,
+      "mean": 129.9504132231405,
+      "scale": 19.78117948487192,
+      "encoded": [
+        "bp"
+      ]
+    },
+    {
+      "name": "pr",
+      "type": "number",
+      "default": 70.0,
+      "min": 50.0,
+      "max": 110.0,
+      "mean": 75.66528925619835,
+      "scale": 9.322923057594032,
+      "encoded": [
+        "pr"
+      ]
+    },
+    {
+      "name": "edema",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.045454545454545456,
+      "scale": 0.20829889522526548,
+      "encoded": [
+        "edema"
+      ]
+    },
+    {
+      "name": "weak_peripheral_pulse",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "weak_peripheral_pulse=N",
+        "weak_peripheral_pulse=Y"
+      ]
+    },
+    {
+      "name": "lung_rales",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "lung_rales=N",
+        "lung_rales=Y"
+      ]
+    },
+    {
+      "name": "systolic_murmur",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "systolic_murmur=N",
+        "systolic_murmur=Y"
+      ]
+    },
+    {
+      "name": "diastolic_murmur",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "diastolic_murmur=N",
+        "diastolic_murmur=Y"
+      ]
+    },
+    {
+      "name": "typical_chest_pain",
+      "type": "number",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.5413223140495868,
+      "scale": 0.49828954069053805,
+      "encoded": [
+        "typical_chest_pain"
+      ]
+    },
+    {
+      "name": "dyspnea",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "dyspnea=N",
+        "dyspnea=Y"
+      ]
+    },
+    {
+      "name": "function_class",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 3.0,
+      "mean": 0.5991735537190083,
+      "scale": 0.9919507342279178,
+      "encoded": [
+        "function_class"
+      ]
+    },
+    {
+      "name": "atypical",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "atypical=N",
+        "atypical=Y"
+      ]
+    },
+    {
+      "name": "nonanginal",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "nonanginal=N",
+        "nonanginal=Y"
+      ]
+    },
+    {
+      "name": "exertional_cp",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N"
+      ],
+      "encoded": [
+        "exertional_cp=N"
+      ]
+    },
+    {
+      "name": "lowth_ang",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N"
+      ],
+      "encoded": [
+        "lowth_ang=N"
+      ]
+    },
+    {
+      "name": "q_wave",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.049586776859504134,
+      "scale": 0.21708967829030898,
+      "encoded": [
+        "q_wave"
+      ]
+    },
+    {
+      "name": "st_elevation",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.049586776859504134,
+      "scale": 0.21708967829030898,
+      "encoded": [
+        "st_elevation"
+      ]
+    },
+    {
+      "name": "st_depression",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.2396694214876033,
+      "scale": 0.42688170479818044,
+      "encoded": [
+        "st_depression"
+      ]
+    },
+    {
+      "name": "tinversion",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.2892561983471074,
+      "scale": 0.45341708179653567,
+      "encoded": [
+        "tinversion"
+      ]
+    },
+    {
+      "name": "lvh",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "lvh=N",
+        "lvh=Y"
+      ]
+    },
+    {
+      "name": "poor_r_progression",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "encoded": [
+        "poor_r_progression=N",
+        "poor_r_progression=Y"
+      ]
+    },
+    {
+      "name": "bbb",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "LBBB",
+        "N",
+        "RBBB"
+      ],
+      "encoded": [
+        "bbb=LBBB",
+        "bbb=N",
+        "bbb=RBBB"
+      ]
+    },
+    {
+      "name": "fbs",
+      "type": "number",
+      "default": 100.0,
+      "min": 69.0,
+      "max": 400.0,
+      "mean": 120.6694214876033,
+      "scale": 54.226322239593806,
+      "encoded": [
+        "fbs"
+      ]
+    },
+    {
+      "name": "cr",
+      "type": "number",
+      "default": 1.0,
+      "min": 0.5,
+      "max": 2.0,
+      "mean": 1.0549586776859505,
+      "scale": 0.2617412259596232,
+      "encoded": [
+        "cr"
+      ]
+    },
+    {
+      "name": "tg",
+      "type": "number",
+      "default": 117.5,
+      "min": 41.0,
+      "max": 1050.0,
+      "mean": 149.3305785123967,
+      "scale": 97.01004365057678,
+      "encoded": [
+        "tg"
+      ]
+    },
+    {
+      "name": "ldl",
+      "type": "number",
+      "default": 99.0,
+      "min": 30.0,
+      "max": 232.0,
+      "mean": 105.2892561983471,
+      "scale": 36.76346956542706,
+      "encoded": [
+        "ldl"
+      ]
+    },
+    {
+      "name": "hdl",
+      "type": "number",
+      "default": 40.0,
+      "min": 15.9,
+      "max": 111.0,
+      "mean": 40.598760330578514,
+      "scale": 11.047427737724492,
+      "encoded": [
+        "hdl"
+      ]
+    },
+    {
+      "name": "bun",
+      "type": "number",
+      "default": 16.0,
+      "min": 8.0,
+      "max": 52.0,
+      "mean": 17.487603305785125,
+      "scale": 6.773326029029332,
+      "encoded": [
+        "bun"
+      ]
+    },
+    {
+      "name": "esr",
+      "type": "number",
+      "default": 15.0,
+      "min": 1.0,
+      "max": 80.0,
+      "mean": 19.44214876033058,
+      "scale": 15.43042102158882,
+      "encoded": [
+        "esr"
+      ]
+    },
+    {
+      "name": "hb",
+      "type": "number",
+      "default": 13.3,
+      "min": 8.9,
+      "max": 17.6,
+      "mean": 13.155785123966941,
+      "scale": 1.611191362539178,
+      "encoded": [
+        "hb"
+      ]
+    },
+    {
+      "name": "k",
+      "type": "number",
+      "default": 4.2,
+      "min": 3.0,
+      "max": 6.6,
+      "mean": 4.2260330578512395,
+      "scale": 0.46792133855218415,
+      "encoded": [
+        "k"
+      ]
+    },
+    {
+      "name": "na",
+      "type": "number",
+      "default": 141.0,
+      "min": 130.0,
+      "max": 156.0,
+      "mean": 141.14462809917356,
+      "scale": 3.730562858585158,
+      "encoded": [
+        "na"
+      ]
+    },
+    {
+      "name": "wbc",
+      "type": "number",
+      "default": 7200.0,
+      "min": 3700.0,
+      "max": 17800.0,
+      "mean": 7624.380165289256,
+      "scale": 2431.258352744192,
+      "encoded": [
+        "wbc"
+      ]
+    },
+    {
+      "name": "lymph",
+      "type": "number",
+      "default": 32.0,
+      "min": 7.0,
+      "max": 60.0,
+      "mean": 31.81404958677686,
+      "scale": 9.775714602909659,
+      "encoded": [
+        "lymph"
+      ]
+    },
+    {
+      "name": "neut",
+      "type": "number",
+      "default": 60.0,
+      "min": 33.0,
+      "max": 89.0,
+      "mean": 60.84710743801653,
+      "scale": 10.189393078221425,
+      "encoded": [
+        "neut"
+      ]
+    },
+    {
+      "name": "plt",
+      "type": "number",
+      "default": 211.0,
+      "min": 118.0,
+      "max": 742.0,
+      "mean": 223.599173553719,
+      "scale": 61.64327260267925,
+      "encoded": [
+        "plt"
+      ]
+    },
+    {
+      "name": "ef_tte",
+      "type": "number",
+      "default": 50.0,
+      "min": 15.0,
+      "max": 60.0,
+      "mean": 47.15289256198347,
+      "scale": 9.344053435650494,
+      "encoded": [
+        "ef_tte"
+      ]
+    },
+    {
+      "name": "region_rwma",
+      "type": "number",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 4.0,
+      "mean": 0.5702479338842975,
+      "scale": 1.0895934967296592,
+      "encoded": [
+        "region_rwma"
+      ]
+    },
+    {
+      "name": "vhd",
+      "type": "category",
+      "default": "mild",
+      "options": [
+        "Moderate",
+        "N",
+        "Severe",
+        "mild"
+      ],
+      "encoded": [
+        "vhd=Moderate",
+        "vhd=N",
+        "vhd=Severe",
+        "vhd=mild"
+      ]
+    }
+  ],
+  "encoded_names": [
+    "age",
+    "weight",
+    "length",
+    "sex=Female",
+    "sex=Male",
+    "bmi",
+    "dm",
+    "htn",
+    "current_smoker",
+    "ex_smoker",
+    "fh",
+    "obesity=N",
+    "obesity=Y",
+    "crf=N",
+    "crf=Y",
+    "cva=N",
+    "cva=Y",
+    "airway_disease=N",
+    "airway_disease=Y",
+    "thyroid_disease=N",
+    "thyroid_disease=Y",
+    "chf=N",
+    "chf=Y",
+    "dlp=N",
+    "dlp=Y",
+    "bp",
+    "pr",
+    "edema",
+    "weak_peripheral_pulse=N",
+    "weak_peripheral_pulse=Y",
+    "lung_rales=N",
+    "lung_rales=Y",
+    "systolic_murmur=N",
+    "systolic_murmur=Y",
+    "diastolic_murmur=N",
+    "diastolic_murmur=Y",
+    "typical_chest_pain",
+    "dyspnea=N",
+    "dyspnea=Y",
+    "function_class",
+    "atypical=N",
+    "atypical=Y",
+    "nonanginal=N",
+    "nonanginal=Y",
+    "exertional_cp=N",
+    "lowth_ang=N",
+    "q_wave",
+    "st_elevation",
+    "st_depression",
+    "tinversion",
+    "lvh=N",
+    "lvh=Y",
+    "poor_r_progression=N",
+    "poor_r_progression=Y",
+    "bbb=LBBB",
+    "bbb=N",
+    "bbb=RBBB",
+    "fbs",
+    "cr",
+    "tg",
+    "ldl",
+    "hdl",
+    "bun",
+    "esr",
+    "hb",
+    "k",
+    "na",
+    "wbc",
+    "lymph",
+    "neut",
+    "plt",
+    "ef_tte",
+    "region_rwma",
+    "vhd=Moderate",
+    "vhd=N",
+    "vhd=Severe",
+    "vhd=mild"
+  ],
+  "weights": [
+    0.6293266127974144,
+    0.05196304066049762,
+    0.27495001212325754,
+    0.0027171410931821553,
+    -0.014379737136773265,
+    -0.0664721669879915,
+    0.2806593564963908,
+    0.12417645957842993,
+    0.18202256561998345,
+    0.20294655447220186,
+    0.24200278420236584,
+    0.03880658462323711,
+    -0.050469180666828206,
+    -0.06496506032920996,
+    0.0533024642856188,
+    0.1674549019233697,
+    -0.17911749796696136,
+    -0.1954377507603782,
+    0.18377515471678738,
+    -0.03308331409449006,
+    0.02142071805089898,
+    0.01116868311548999,
+    -0.022831279159081064,
+    0.09815258284160393,
+    -0.109815178885195,
+    0.10730072826020212,
+    -0.018666109334874514,
+    0.057929234087006405,
+    0.061927114217678866,
+    -0.07358971026126994,
+    -0.0820937768430197,
+    0.0704311807994285,
+    0.27916308560105674,
+    -0.2908256816446483,
+    -0.06498158280018099,
+    0.05331898675658993,
+    0.5120370887870981,
+    0.10058990777743664,
+    -0.11225250382102767,
+    0.15268793312715057,
+    -0.12348291088814536,
+    0.11182031484455417,
+    -0.10532275835873266,
+    0.09366016231514143,
+    -0.011662596043591092,
+    -0.011662596043591092,
+    0.0674287815806234,
+    -0.048860855654255665,
+    -0.058133215616688064,
+    0.028588661149481054,
+    -0.006185396227800866,
+    -0.005477199815790225,
+    0.051467756390548826,
+    -0.06313035243413997,
+    -0.07336374286502266,
+    0.0873573463340704,
+    -0.02565619951263887,
+    0.17687034193292625,
+    0.1682416571412723,
+    0.16714476875250803,
+    0.09770847111877094,
+    -0.14263472787748047,
+    0.052884071222873114,
+    0.13127396686183807,
+    0.04800601112565762,
+    0.19375002109502115,
+    0.35428824873912235,
+    0.07009034254329327,
+    0.09276196395643244,
+    0.04067061416929206,
+    -0.15371616828807713,
+    -0.1951139984864973,
+    -0.11349132019697043,
+    0.08583570100017375,
+    0.1187589774632323,
+    0.036298740393709825,
+    -0.25255601490070706
+  ],
+  "intercept": -0.05171466172298882,
+  "calibration_slope": 0.33651252857010555,
+  "calibration_intercept": -0.3465647268930584,
+  "background": [
+    1.0941660800541315e-16,
+    3.4132476459550267e-16,
+    -5.693333775040575e-16,
+    0.4297520661157025,
+    0.5702479338842975,
+    7.817438156864738e-16,
+    -6.973301642273711e-17,
+    4.2206825729551407e-17,
+    2.5691111313639987e-17,
+    -7.409132994915818e-17,
+    -9.40478182017178e-17,
+    0.29338842975206614,
+    0.7066115702479339,
+    0.9793388429752066,
+    0.02066115702479339,
+    0.9793388429752066,
+    0.02066115702479339,
+    0.9545454545454546,
+    0.045454545454545456,
+    0.9793388429752066,
+    0.02066115702479339,
+    0.9958677685950413,
+    0.004132231404958678,
+    0.6322314049586777,
+    0.3677685950413223,
+    2.5874619251594555e-16,
+    -2.4039539872048843e-16,
+    -1.0826968339319708e-16,
+    0.9917355371900827,
+    0.008264462809917356,
+    0.9628099173553719,
+    0.0371900826446281,
+    0.8636363636363636,
+    0.13636363636363635,
+    0.9669421487603306,
+    0.03305785123966942,
+    4.0371746350005693e-17,
+    0.5454545454545454,
+    0.45454545454545453,
+    -7.340317518182853e-18,
+    0.6983471074380165,
+    0.30165289256198347,
+    0.9421487603305785,
+    0.05785123966942149,
+    1.0,
+    1.0,
+    -3.0462317700458843e-16,
+    -3.0462317700458843e-16,
+    1.1469246122160707e-16,
+    -1.376309534659285e-17,
+    0.9256198347107438,
+    0.0743801652892562,
+    0.9752066115702479,
+    0.024793388429752067,
+    0.05371900826446281,
+    0.9214876033057852,
+    0.024793388429752067,
+    8.005533793268174e-17,
+    -5.341227919090241e-16,
+    -5.390545677415533e-17,
+    8.90013499079671e-17,
+    -1.6332206477956848e-16,
+    -1.7846146966082063e-16,
+    -1.036819849443328e-16,
+    3.917894475330098e-16,
+    5.225388533256419e-16,
+    -1.413842642594056e-15,
+    1.1928015967047137e-17,
+    -1.3029063594774565e-16,
+    -1.101047627727428e-17,
+    1.5758744171848813e-16,
+    -9.037765944262637e-17,
+    2.0002365237048275e-16,
+    0.09504132231404959,
+    0.371900826446281,
+    0.0371900826446281,
+    0.49586776859504134
+  ]
+}

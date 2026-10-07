@@ -1,0 +1,571 @@
+{
+  "targets": [
+    "CAD",
+    "LAD",
+    "LCX",
+    "RCA"
+  ],
+  "fields": [
+    {
+      "name": "age",
+      "label": "Age",
+      "type": "number",
+      "default": 58.0,
+      "options": [],
+      "min": 30.0,
+      "max": 86.0
+    },
+    {
+      "name": "weight",
+      "label": "Weight",
+      "type": "number",
+      "default": 74.0,
+      "options": [],
+      "min": 48.0,
+      "max": 120.0
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "type": "number",
+      "default": 165.0,
+      "options": [],
+      "min": 144.0,
+      "max": 187.0
+    },
+    {
+      "name": "sex",
+      "label": "Sex",
+      "type": "category",
+      "default": "Male",
+      "options": [
+        "Female",
+        "Male"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "bmi",
+      "label": "Bmi",
+      "type": "number",
+      "default": 26.775510204081634,
+      "options": [],
+      "min": 18.115412710007302,
+      "max": 40.90065778377467
+    },
+    {
+      "name": "dm",
+      "label": "Dm",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "htn",
+      "label": "Htn",
+      "type": "number",
+      "default": 1.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "current_smoker",
+      "label": "Current Smoker",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "ex_smoker",
+      "label": "Ex Smoker",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "fh",
+      "label": "Fh",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "obesity",
+      "label": "Obesity",
+      "type": "category",
+      "default": "Y",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "crf",
+      "label": "Crf",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "cva",
+      "label": "Cva",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "airway_disease",
+      "label": "Airway Disease",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "thyroid_disease",
+      "label": "Thyroid Disease",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "chf",
+      "label": "Chf",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "dlp",
+      "label": "Dlp",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "bp",
+      "label": "Bp",
+      "type": "number",
+      "default": 130.0,
+      "options": [],
+      "min": 90.0,
+      "max": 190.0
+    },
+    {
+      "name": "pr",
+      "label": "Pr",
+      "type": "number",
+      "default": 70.0,
+      "options": [],
+      "min": 60.0,
+      "max": 110.0
+    },
+    {
+      "name": "edema",
+      "label": "Edema",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "weak_peripheral_pulse",
+      "label": "Weak Peripheral Pulse",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "lung_rales",
+      "label": "Lung Rales",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "systolic_murmur",
+      "label": "Systolic Murmur",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "diastolic_murmur",
+      "label": "Diastolic Murmur",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "typical_chest_pain",
+      "label": "Typical Chest Pain",
+      "type": "number",
+      "default": 1.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "dyspnea",
+      "label": "Dyspnea",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "function_class",
+      "label": "Function Class",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 3.0
+    },
+    {
+      "name": "atypical",
+      "label": "Atypical",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "nonanginal",
+      "label": "Nonanginal",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "exertional_cp",
+      "label": "Exertional Cp",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "lowth_ang",
+      "label": "Lowth Ang",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "q_wave",
+      "label": "Q Wave",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "st_elevation",
+      "label": "St Elevation",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "st_depression",
+      "label": "St Depression",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "tinversion",
+      "label": "Tinversion",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "name": "lvh",
+      "label": "Lvh",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "poor_r_progression",
+      "label": "Poor R Progression",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "N",
+        "Y"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "bbb",
+      "label": "Bbb",
+      "type": "category",
+      "default": "N",
+      "options": [
+        "LBBB",
+        "N",
+        "RBBB"
+      ],
+      "min": null,
+      "max": null
+    },
+    {
+      "name": "fbs",
+      "label": "Fbs",
+      "type": "number",
+      "default": 100.0,
+      "options": [],
+      "min": 62.0,
+      "max": 400.0
+    },
+    {
+      "name": "cr",
+      "label": "Cr",
+      "type": "number",
+      "default": 1.0,
+      "options": [],
+      "min": 0.5,
+      "max": 2.2
+    },
+    {
+      "name": "tg",
+      "label": "Tg",
+      "type": "number",
+      "default": 122.0,
+      "options": [],
+      "min": 37.0,
+      "max": 1050.0
+    },
+    {
+      "name": "ldl",
+      "label": "Ldl",
+      "type": "number",
+      "default": 99.0,
+      "options": [],
+      "min": 18.0,
+      "max": 213.0
+    },
+    {
+      "name": "hdl",
+      "label": "Hdl",
+      "type": "number",
+      "default": 39.0,
+      "options": [],
+      "min": 15.9,
+      "max": 111.0
+    },
+    {
+      "name": "bun",
+      "label": "Bun",
+      "type": "number",
+      "default": 16.0,
+      "options": [],
+      "min": 6.0,
+      "max": 52.0
+    },
+    {
+      "name": "esr",
+      "label": "Esr",
+      "type": "number",
+      "default": 15.0,
+      "options": [],
+      "min": 1.0,
+      "max": 90.0
+    },
+    {
+      "name": "hb",
+      "label": "Hb",
+      "type": "number",
+      "default": 13.2,
+      "options": [],
+      "min": 8.9,
+      "max": 17.6
+    },
+    {
+      "name": "k",
+      "label": "K",
+      "type": "number",
+      "default": 4.2,
+      "options": [],
+      "min": 3.0,
+      "max": 5.4
+    },
+    {
+      "name": "na",
+      "label": "Na",
+      "type": "number",
+      "default": 141.0,
+      "options": [],
+      "min": 128.0,
+      "max": 156.0
+    },
+    {
+      "name": "wbc",
+      "label": "Wbc",
+      "type": "number",
+      "default": 7200.0,
+      "options": [],
+      "min": 3700.0,
+      "max": 18000.0
+    },
+    {
+      "name": "lymph",
+      "label": "Lymph",
+      "type": "number",
+      "default": 32.0,
+      "options": [],
+      "min": 7.0,
+      "max": 60.0
+    },
+    {
+      "name": "neut",
+      "label": "Neut",
+      "type": "number",
+      "default": 60.0,
+      "options": [],
+      "min": 32.0,
+      "max": 89.0
+    },
+    {
+      "name": "plt",
+      "label": "Plt",
+      "type": "number",
+      "default": 210.0,
+      "options": [],
+      "min": 25.0,
+      "max": 742.0
+    },
+    {
+      "name": "ef_tte",
+      "label": "Ef Tte",
+      "type": "number",
+      "default": 50.0,
+      "options": [],
+      "min": 15.0,
+      "max": 60.0
+    },
+    {
+      "name": "region_rwma",
+      "label": "Region Rwma",
+      "type": "number",
+      "default": 0.0,
+      "options": [],
+      "min": 0.0,
+      "max": 4.0
+    },
+    {
+      "name": "vhd",
+      "label": "Vhd",
+      "type": "category",
+      "default": "mild",
+      "options": [
+        "Moderate",
+        "N",
+        "Severe",
+        "mild"
+      ],
+      "min": null,
+      "max": null
+    }
+  ],
+  "dataset": "UCI Extension of Z-Alizadeh Sani (id 411)"
+}

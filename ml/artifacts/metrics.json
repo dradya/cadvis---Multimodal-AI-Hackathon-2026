@@ -1,0 +1,512 @@
+{
+  "dataset": {
+    "rows": 303,
+    "features": 55
+  },
+  "targets": {
+    "CAD": {
+      "selected_model": "L2 logistic regression",
+      "cv": {
+        "accuracy": {
+          "mean": 0.8773809523809524,
+          "std": 0.029988809480582242
+        },
+        "precision": {
+          "mean": 0.9512582250515739,
+          "std": 0.030591666517300765
+        },
+        "recall": {
+          "mean": 0.8738823529411763,
+          "std": 0.04358753136313874
+        },
+        "f1": {
+          "mean": 0.9099481413465625,
+          "std": 0.02326036590705858
+        },
+        "roc_auc": {
+          "mean": 0.9440216086434573,
+          "std": 0.03356982821498747
+        },
+        "pr_auc": {
+          "mean": 0.9758248694747617,
+          "std": 0.018269794414651416
+        },
+        "brier_score": {
+          "mean": 0.09238773853449582,
+          "std": 0.020999982949132207
+        }
+      },
+      "holdout": {
+        "accuracy": 0.85,
+        "precision": 0.8863636363636364,
+        "recall": 0.9069767441860465,
+        "f1": 0.896551724137931,
+        "roc_auc": 0.8864569083447332,
+        "pr_auc": 0.9563248851522714,
+        "brier_score": 0.1234854182951891
+      },
+      "holdout_n": 60,
+      "positive_rate": 0.7128712871287128,
+      "global_shap": [
+        {
+          "feature": "typical_chest_pain",
+          "mean_abs_shap": 1.0483916878449036
+        },
+        {
+          "feature": "age",
+          "mean_abs_shap": 0.6622993114063624
+        },
+        {
+          "feature": "region_rwma",
+          "mean_abs_shap": 0.6158190714686832
+        },
+        {
+          "feature": "htn",
+          "mean_abs_shap": 0.456716730338756
+        },
+        {
+          "feature": "dm",
+          "mean_abs_shap": 0.4378776114658387
+        },
+        {
+          "feature": "tinversion",
+          "mean_abs_shap": 0.3769472022873281
+        },
+        {
+          "feature": "fh",
+          "mean_abs_shap": 0.3292706103574202
+        },
+        {
+          "feature": "tg",
+          "mean_abs_shap": 0.30284497942312866
+        },
+        {
+          "feature": "dyspnea",
+          "mean_abs_shap": 0.2783542577482854
+        },
+        {
+          "feature": "ef_tte",
+          "mean_abs_shap": 0.257839215708159
+        },
+        {
+          "feature": "pr",
+          "mean_abs_shap": 0.2512655320620115
+        },
+        {
+          "feature": "sex",
+          "mean_abs_shap": 0.20877632493390658
+        },
+        {
+          "feature": "bp",
+          "mean_abs_shap": 0.18787039952788628
+        },
+        {
+          "feature": "function_class",
+          "mean_abs_shap": 0.1448526785200768
+        },
+        {
+          "feature": "hb",
+          "mean_abs_shap": 0.13984212551734768
+        },
+        {
+          "feature": "q_wave",
+          "mean_abs_shap": 0.13553000728355694
+        },
+        {
+          "feature": "vhd",
+          "mean_abs_shap": 0.132608675444477
+        },
+        {
+          "feature": "st_elevation",
+          "mean_abs_shap": 0.12741839906062913
+        },
+        {
+          "feature": "cr",
+          "mean_abs_shap": 0.122741859021859
+        },
+        {
+          "feature": "wbc",
+          "mean_abs_shap": 0.12118243109957774
+        }
+      ]
+    },
+    "LAD": {
+      "selected_model": "L2 logistic regression",
+      "cv": {
+        "accuracy": {
+          "mean": 0.7162074829931973,
+          "std": 0.050892900713594556
+        },
+        "precision": {
+          "mean": 0.7726210631100252,
+          "std": 0.05060652151892694
+        },
+        "recall": {
+          "mean": 0.7388669950738916,
+          "std": 0.11033082998978959
+        },
+        "f1": {
+          "mean": 0.7494174312594757,
+          "std": 0.05607403509730526
+        },
+        "roc_auc": {
+          "mean": 0.8070295566502462,
+          "std": 0.05238873367298884
+        },
+        "pr_auc": {
+          "mean": 0.858892316506671,
+          "std": 0.04169543211456355
+        },
+        "brier_score": {
+          "mean": 0.1860365172494522,
+          "std": 0.02901582305663929
+        }
+      },
+      "holdout": {
+        "accuracy": 0.8333333333333334,
+        "precision": 0.9032258064516129,
+        "recall": 0.8,
+        "f1": 0.8484848484848486,
+        "roc_auc": 0.8891428571428571,
+        "pr_auc": 0.925577945228422,
+        "brier_score": 0.1438299796905305
+      },
+      "holdout_n": 60,
+      "positive_rate": 0.5841584158415841,
+      "global_shap": [
+        {
+          "feature": "typical_chest_pain",
+          "mean_abs_shap": 0.493894986597716
+        },
+        {
+          "feature": "region_rwma",
+          "mean_abs_shap": 0.3104709962943569
+        },
+        {
+          "feature": "age",
+          "mean_abs_shap": 0.23418286907277605
+        },
+        {
+          "feature": "ef_tte",
+          "mean_abs_shap": 0.19718421556316987
+        },
+        {
+          "feature": "ldl",
+          "mean_abs_shap": 0.14354858197113524
+        },
+        {
+          "feature": "dlp",
+          "mean_abs_shap": 0.14075567003959613
+        },
+        {
+          "feature": "htn",
+          "mean_abs_shap": 0.1212045108086726
+        },
+        {
+          "feature": "fbs",
+          "mean_abs_shap": 0.11149099044119537
+        },
+        {
+          "feature": "lymph",
+          "mean_abs_shap": 0.10844629740201327
+        },
+        {
+          "feature": "pr",
+          "mean_abs_shap": 0.10594232140826604
+        },
+        {
+          "feature": "tinversion",
+          "mean_abs_shap": 0.09830656952650414
+        },
+        {
+          "feature": "wbc",
+          "mean_abs_shap": 0.09733399555914098
+        },
+        {
+          "feature": "st_elevation",
+          "mean_abs_shap": 0.09155833632861185
+        },
+        {
+          "feature": "fh",
+          "mean_abs_shap": 0.0801490183884064
+        },
+        {
+          "feature": "esr",
+          "mean_abs_shap": 0.06708573127711505
+        },
+        {
+          "feature": "cr",
+          "mean_abs_shap": 0.0663294732999913
+        },
+        {
+          "feature": "sex",
+          "mean_abs_shap": 0.06310456518711546
+        },
+        {
+          "feature": "neut",
+          "mean_abs_shap": 0.060635639284739126
+        },
+        {
+          "feature": "bmi",
+          "mean_abs_shap": 0.05788226997745517
+        },
+        {
+          "feature": "q_wave",
+          "mean_abs_shap": 0.05703558582482556
+        }
+      ]
+    },
+    "LCX": {
+      "selected_model": "L2 logistic regression",
+      "cv": {
+        "accuracy": {
+          "mean": 0.6320748299319728,
+          "std": 0.05221374067061179
+        },
+        "precision": {
+          "mean": 0.534504843055321,
+          "std": 0.06771784494219518
+        },
+        "recall": {
+          "mean": 0.5684210526315789,
+          "std": 0.116702935926755
+        },
+        "f1": {
+          "mean": 0.544605258339879,
+          "std": 0.06916325080795038
+        },
+        "roc_auc": {
+          "mean": 0.6755789473684212,
+          "std": 0.05888791334382348
+        },
+        "pr_auc": {
+          "mean": 0.589021824973034,
+          "std": 0.06678017722918232
+        },
+        "brier_score": {
+          "mean": 0.2387441774024794,
+          "std": 0.02888804472301229
+        }
+      },
+      "holdout": {
+        "accuracy": 0.6557377049180327,
+        "precision": 0.6363636363636364,
+        "recall": 0.2916666666666667,
+        "f1": 0.4,
+        "roc_auc": 0.7837837837837838,
+        "pr_auc": 0.6442692937495972,
+        "brier_score": 0.20826034314273856
+      },
+      "holdout_n": 61,
+      "positive_rate": 0.3927392739273927,
+      "global_shap": [
+        {
+          "feature": "age",
+          "mean_abs_shap": 0.17558386520334535
+        },
+        {
+          "feature": "typical_chest_pain",
+          "mean_abs_shap": 0.17171744760254148
+        },
+        {
+          "feature": "na",
+          "mean_abs_shap": 0.08672788885945737
+        },
+        {
+          "feature": "dm",
+          "mean_abs_shap": 0.08600478653502935
+        },
+        {
+          "feature": "length",
+          "mean_abs_shap": 0.07659020053321057
+        },
+        {
+          "feature": "vhd",
+          "mean_abs_shap": 0.06700504061800974
+        },
+        {
+          "feature": "fh",
+          "mean_abs_shap": 0.05795902761604146
+        },
+        {
+          "feature": "ef_tte",
+          "mean_abs_shap": 0.05114705309650809
+        },
+        {
+          "feature": "current_smoker",
+          "mean_abs_shap": 0.05031755979639889
+        },
+        {
+          "feature": "k",
+          "mean_abs_shap": 0.04917854642808313
+        },
+        {
+          "feature": "systolic_murmur",
+          "mean_abs_shap": 0.04517800246023704
+        },
+        {
+          "feature": "function_class",
+          "mean_abs_shap": 0.04488706047119076
+        },
+        {
+          "feature": "cr",
+          "mean_abs_shap": 0.044073168391082634
+        },
+        {
+          "feature": "fbs",
+          "mean_abs_shap": 0.04219710851807926
+        },
+        {
+          "feature": "htn",
+          "mean_abs_shap": 0.041321982886007365
+        },
+        {
+          "feature": "tg",
+          "mean_abs_shap": 0.037306317664757914
+        },
+        {
+          "feature": "plt",
+          "mean_abs_shap": 0.03564115299190742
+        },
+        {
+          "feature": "dyspnea",
+          "mean_abs_shap": 0.03551610154411158
+        },
+        {
+          "feature": "hdl",
+          "mean_abs_shap": 0.03546667486363812
+        },
+        {
+          "feature": "atypical",
+          "mean_abs_shap": 0.03336091450700858
+        }
+      ]
+    },
+    "RCA": {
+      "selected_model": "L2 logistic regression",
+      "cv": {
+        "accuracy": {
+          "mean": 0.6498666666666666,
+          "std": 0.04917942395698369
+        },
+        "precision": {
+          "mean": 0.5331865285614512,
+          "std": 0.05627316925876413
+        },
+        "recall": {
+          "mean": 0.6247953216374268,
+          "std": 0.12601886895272862
+        },
+        "f1": {
+          "mean": 0.5691854772144734,
+          "std": 0.06767974808205253
+        },
+        "roc_auc": {
+          "mean": 0.7171254480286738,
+          "std": 0.05014488635599407
+        },
+        "pr_auc": {
+          "mean": 0.5993051995492175,
+          "std": 0.07189894207507452
+        },
+        "brier_score": {
+          "mean": 0.22275255854246453,
+          "std": 0.0276877642331421
+        }
+      },
+      "holdout": {
+        "accuracy": 0.7049180327868853,
+        "precision": 0.6666666666666666,
+        "recall": 0.43478260869565216,
+        "f1": 0.5263157894736841,
+        "roc_auc": 0.7665903890160183,
+        "pr_auc": 0.6350482766545014,
+        "brier_score": 0.19492677775820563
+      },
+      "holdout_n": 61,
+      "positive_rate": 0.37623762376237624,
+      "global_shap": [
+        {
+          "feature": "dm",
+          "mean_abs_shap": 0.20397033207760265
+        },
+        {
+          "feature": "age",
+          "mean_abs_shap": 0.16323937386235274
+        },
+        {
+          "feature": "sex",
+          "mean_abs_shap": 0.1221260248357896
+        },
+        {
+          "feature": "typical_chest_pain",
+          "mean_abs_shap": 0.10914439717979786
+        },
+        {
+          "feature": "dyspnea",
+          "mean_abs_shap": 0.10672416123146913
+        },
+        {
+          "feature": "function_class",
+          "mean_abs_shap": 0.10063161979693881
+        },
+        {
+          "feature": "tg",
+          "mean_abs_shap": 0.09809756832950443
+        },
+        {
+          "feature": "htn",
+          "mean_abs_shap": 0.09662961341776315
+        },
+        {
+          "feature": "neut",
+          "mean_abs_shap": 0.06223052584147016
+        },
+        {
+          "feature": "fh",
+          "mean_abs_shap": 0.05518802103243312
+        },
+        {
+          "feature": "region_rwma",
+          "mean_abs_shap": 0.05490188055679633
+        },
+        {
+          "feature": "bun",
+          "mean_abs_shap": 0.04883692516340358
+        },
+        {
+          "feature": "k",
+          "mean_abs_shap": 0.047682165212356006
+        },
+        {
+          "feature": "dlp",
+          "mean_abs_shap": 0.047645524758129096
+        },
+        {
+          "feature": "esr",
+          "mean_abs_shap": 0.041654849093601815
+        },
+        {
+          "feature": "pr",
+          "mean_abs_shap": 0.04130659714508981
+        },
+        {
+          "feature": "weight",
+          "mean_abs_shap": 0.040670232222314036
+        },
+        {
+          "feature": "hdl",
+          "mean_abs_shap": 0.03817068383227374
+        },
+        {
+          "feature": "lymph",
+          "mean_abs_shap": 0.038160485567558446
+        },
+        {
+          "feature": "na",
+          "mean_abs_shap": 0.03779496463315885
+        }
+      ]
+    }
+  }
+}
