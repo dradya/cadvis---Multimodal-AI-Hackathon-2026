@@ -14,6 +14,3 @@ Four independent L2 logistic models, schemas, metrics, and weights are included 
 
 ## Safety
 Experimental and educational only, not a diagnosis or substitute for medical care or diagnostic imaging. Uniform vessel coloring shows vessel-level probability; lesion location is not predicted. The small historical dataset does not establish clinical validity. Reference measurements are illustrative context, not clinical classifications.
-
-## Attribution
-Alizadehsani, R., Roshanzamir, M., & Sani, Z. (2013). Extension of Z-Alizadeh Sani Dataset. UCI Machine Learning Repository. https://doi.org/10.24432/C5461K. CC BY 4.0.
