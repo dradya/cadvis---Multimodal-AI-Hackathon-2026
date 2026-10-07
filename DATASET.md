@@ -7,4 +7,3 @@ The workbook spells the female category as “Fmale”; training normalizes it t
 Source: https://archive.ics.uci.edu/dataset/411/extention%2Bof%2Bz%2Balizadeh%2Bsani%2Bdataset
 Citation: Alizadehsani, R., Roshanzamir, M., & Sani, Z. (2013). Extension of Z-Alizadeh Sani Dataset. UCI Machine Learning Repository. https://doi.org/10.24432/C5461K.
 Raw workbook is not bundled; fetch from UCI or supply a local XLSX/CSV to training.
-
