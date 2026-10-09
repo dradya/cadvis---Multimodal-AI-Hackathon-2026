@@ -2,6 +2,7 @@ import React,{useState}from"react";
 import {RotateCcw}from"lucide-react";
 
 const TABS=[["risk","Risk"],["pres","Presentation"],["labs","Vitals & labs"],["test","ECG / echo"]];
+const RANGE={age:{min:0,max:120}};
 
 function Slider({label,unit,value,min,max,step=1,onChange}){
   const dec=step<1?1:0;
@@ -45,8 +46,9 @@ export default function Inputs({schema,values,onChange,onReset}){
   const set=(k,v)=>onChange({...values,[k]:v});
   const S=(k,label,unit,step)=>{
     const f=F[k];
+    const r=RANGE[k];
     return <Slider label={label} unit={unit} step={step??1} value={values[k]??f.default}
-      min={f.min??0} max={f.max??1} onChange={v=>set(k,v)}/>;
+      min={r?.min??f.min??0} max={r?.max??f.max??1} onChange={v=>set(k,v)}/>;
   };
   const chip=(label,k,cat)=>({label,on:cat?values[k]==="Y":Number(values[k])===1,
     onClick:()=>set(k,cat?(values[k]==="Y"?"N":"Y"):(Number(values[k])===1?0:1))});
