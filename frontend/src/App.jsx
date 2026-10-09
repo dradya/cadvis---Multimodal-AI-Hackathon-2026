@@ -1,4 +1,4 @@
-import React,{useEffect,useRef,useState}from"react";
+import React,{useEffect,useMemo,useRef,useState}from"react";
 import {HeartPulse,AlertTriangle}from"lucide-react";
 import Heart3D from"./Heart3D.jsx";
 import Inputs from"./Inputs.jsx";
@@ -10,6 +10,7 @@ import {TARGETS,pct,riskBand,vesselColor,TARGET_LABEL,VESSEL_LONG}from"./theme.j
 const API=import.meta.env.VITE_API_URL||"http://localhost:8000";
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 const DECK_TABS=[["report","Report"],["physio","Physiology"],["global","Global influence"]];
+const EMPTY_PROBS={};
 
 export default function App(){
   const [schema,setSchema]=useState(null);
@@ -97,6 +98,9 @@ export default function App(){
   const band=riskBand(p);
   const metric=metrics?.targets?.[selected]?.holdout??{};
   const imputed=result?.imputed_count||0;
+  const probs=result?.probabilities;
+  const heartInputs=useMemo(()=>values?{pr:values.pr,ef_tte:values.ef_tte,bp:values.bp,htn:values.htn,bmi:values.bmi}:null,
+    [values?.pr,values?.ef_tte,values?.bp,values?.htn,values?.bmi]);
 
   return <div className="app">
     <header className="topbar">
@@ -185,7 +189,7 @@ export default function App(){
               </div>
             </div>
             {schema?
-              <Heart3D probabilities={result?.probabilities||{}} values={values} selectedVessel={selected}
+              <Heart3D probabilities={probs||EMPTY_PROBS} values={heartInputs} selectedVessel={selected}
                 hoveredVessel={hovered} onSelectVessel={setSelected} onHoverVessel={setHovered}/>
               :<div className="stage-fallback">{status==="error"?"Waiting on the API…":"Connecting to the API…"}</div>}
           </div>

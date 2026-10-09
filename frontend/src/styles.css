@@ -244,7 +244,10 @@ p{margin:0}
   border-color:transparent;font-weight:600}
 .hud-note{position:absolute;left:18px;bottom:12px;z-index:9;max-width:52%;font-size:13px;
   line-height:1.45;color:#9d8fae;padding:4px 9px;border-radius:9px;border:1px solid var(--line);
-  background:rgba(7,5,13,.62);backdrop-filter:blur(8px)}
+  background:rgba(7,5,13,.62);backdrop-filter:blur(8px);display:flex;align-items:flex-start;gap:8px}
+.hud-note .x{flex:0 0 auto;width:16px;height:16px;line-height:1;display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:#a99ab8;background:transparent;border:0;border-radius:6px;cursor:pointer;padding:0;transition:.15s}
+.hud-note .x:hover{color:#fff;background:rgba(255,46,136,.22)}
 .hud-hint{position:absolute;right:16px;bottom:14px;z-index:9;font-size:16px;color:#9d8fae;
   font-family:var(--mono);padding:6px 11px;border-radius:999px;border:1px solid var(--line);
   background:rgba(7,5,13,.62);backdrop-filter:blur(8px)}

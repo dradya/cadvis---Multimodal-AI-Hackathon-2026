@@ -582,13 +582,14 @@ function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoR
   </>;
 }
 
-export default function Heart3D({probabilities={},values,selectedVessel,hoveredVessel,onSelectVessel,onHoverVessel}){
+function Heart3D({probabilities={},values,selectedVessel,hoveredVessel,onSelectVessel,onHoverVessel}){
   const calm=typeof window!=="undefined"&&window.matchMedia&&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const [autoRotate,setAuto]=useState(!calm);
   const [beat,setBeat]=useState(!calm);
   const [ghost,setGhost]=useState(false);
   const [view,setView]=useState("ant");
+  const [showNote,setShowNote]=useState(true);
   const controlsRef=useRef(),apiRef=useRef();
   const params=useMemo(()=>heartParams(values,probabilities),[values,probabilities]);
   useEffect(()=>()=>{document.body.style.cursor=""},[]);
@@ -619,6 +620,10 @@ export default function Heart3D({probabilities={},values,selectedVessel,hoveredV
       <em>veins</em>
     </div>
     <div className="hud-hint">Drag to rotate · scroll to zoom · select a vessel</div>
-    <div className="hud-note">Educational illustration — shape/thickness reflect inputs, not a patient's anatomy. Lesion location and severity are not predicted.</div>
+    {showNote&&<div className="hud-note">
+      <span>Educational illustration — shape/thickness reflect inputs, not a patient's anatomy. Lesion location and severity are not predicted.</span>
+      <button className="x" title="Dismiss" aria-label="Dismiss note" onClick={()=>setShowNote(false)}>×</button>
+    </div>}
   </div>;
 }
+export default React.memo(Heart3D);
