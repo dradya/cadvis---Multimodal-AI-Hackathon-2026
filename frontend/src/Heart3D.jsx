@@ -11,15 +11,31 @@ const smooth=(e0,e1,x)=>{const t=clamp((x-e0)/(e1-e0),0,1);return t*t*(3-2*t)};
 const angD=(a,b)=>{let d=(a-b)%TAU;if(d>Math.PI)d-=TAU;if(d<-Math.PI)d+=TAU;return d};
 const TILT_X=-0.30,TILT_Z=0.42;
 const CAM=[1.2,0.6,5.4];
+const NEUTRAL_SHAPE={lvWall:0,dilation:0};
+function readNum(values,k,fb){const n=Number(values&&values[k]);return Number.isFinite(n)?n:fb;}
+function heartParams(values,probabilities){
+  const pr=readNum(values,"pr",72),ef=readNum(values,"ef_tte",58),bp=readNum(values,"bp",120);
+  const htn=readNum(values,"htn",0),bmi=readNum(values,"bmi",26.8);
+  const rate=clamp(pr/60,0.5,2.2);
+  const strength=clamp(0.45+(ef-28)/95,0.35,1.25);
+  const lvWall=clamp(0.65*clamp((bp-110)/80,0,1)+0.35*clamp(htn,0,1),0,1);
+  const dilation=clamp((58-ef)/40,0,1);
+  const mass=1+0.09*lvWall+0.03*clamp((bmi-25)/15,0,1)+0.04*dilation;
+  const risk=probabilities&&probabilities.CAD!=null?probabilities.CAD:null;
+  return {pr,ef,bp,rate,strength,lvWall,dilation,mass,risk};
+}
 
 /* ---------- parametric ventricular mass ---------- */
-function vPoint(v,th,out){
+function vPoint(v,th,out,sh){
+  sh=sh||NEUTRAL_SHAPE;
+  const lv=sh.lvWall||0,dila=sh.dilation||0;
   v=clamp(v,0,1);
   const g=Math.pow(v,2.6);
   let R=2*Math.sqrt(Math.max(0,g*(1-g)));
   R*=1-0.17*Math.exp(-Math.pow((v-0.94)/0.06,2));                                              // coronary sulcus
   R*=1+0.16*Math.exp(-Math.pow((v-0.52)/0.36,2))*Math.exp(-Math.pow(angD(th,125*D2R)/0.58,2)); // RV free wall (anterior wrap)
-  R*=1+0.07*Math.exp(-Math.pow((v-0.42)/0.42,2))*Math.exp(-Math.pow(angD(th,-20*D2R)/0.75,2)); // LV fullness (left border)
+  R*=1+(0.07+0.18*lv)*Math.exp(-Math.pow((v-0.42)/0.42,2))*Math.exp(-Math.pow(angD(th,-20*D2R)/0.75,2)); // LV fullness (left border)
+  R*=1+0.10*dila*Math.exp(-Math.pow((v-0.45)/0.4,2));
   R*=0.8+0.2*smooth(0,0.38,v);                                                                // taper to a pointed apex
   const gIv=smooth(0.04,0.16,v)*smooth(0.99,0.86,v);
   R*=1-0.12*gIv*Math.exp(-Math.pow(angD(th,lerp(66,100,v)*D2R)/0.12,2));                       // anterior IV groove
@@ -28,21 +44,21 @@ function vPoint(v,th,out){
   const y=-1.18+2.06*v-0.1*smooth(0.4,0.05,v)*Math.exp(-Math.pow(angD(th,252*D2R)/0.9,2));     // diaphragmatic underside
   return out.set(R*Math.cos(th)*0.88+0.17*ap,y,R*Math.sin(th)*0.74+0.26*ap);
 }
-function vNormal(v,th,out){
+function vNormal(v,th,out,sh){
   const vv=Math.max(v,0.035),e=0.005,et=0.008;
-  const a=vPoint(vv+e,th,new THREE.Vector3()),b=vPoint(Math.max(0,vv-e),th,new THREE.Vector3());
-  const c=vPoint(vv,th+et,new THREE.Vector3()),d=vPoint(vv,th-et,new THREE.Vector3());
+  const a=vPoint(vv+e,th,new THREE.Vector3(),sh),b=vPoint(Math.max(0,vv-e),th,new THREE.Vector3(),sh);
+  const c=vPoint(vv,th+et,new THREE.Vector3(),sh),d=vPoint(vv,th-et,new THREE.Vector3(),sh);
   out.crossVectors(a.sub(b),c.sub(d));
   if(!isFinite(out.x)||out.lengthSq()<1e-12)return out.set(0,-1,0);
   return out.normalize();
 }
-function buildVentricle(nV=96,nT=112){
+function buildVentricle(sh,nV=96,nT=112){
   const pos=[],nor=[],uv=[],idx=[],p=new THREE.Vector3(),n=new THREE.Vector3();
   for(let i=0;i<=nV;i++){
     const v=i/nV;
     for(let j=0;j<=nT;j++){
       const th=j/nT*TAU;
-      vPoint(v,th,p);vNormal(v,th,n);
+      vPoint(v,th,p,sh);vNormal(v,th,n,sh);
       pos.push(p.x,p.y,p.z);nor.push(n.x,n.y,n.z);uv.push(j/nT*2,v*1.9);
     }
   }
@@ -242,13 +258,13 @@ const TERR={
 };
 const TERR_ALPHA=(u,w)=>smooth(0,0.2,u)*smooth(1,0.8,u)*smooth(0,0.16,w)*smooth(1,0.84,w);
 
-function buildPatch(spec){
+function buildPatch(spec,sh){
   const nv=26,nt=24,pos=[],col=[],idx=[],p=new THREE.Vector3(),n=new THREE.Vector3();
   for(let i=0;i<=nv;i++){
     const v=lerp(spec.v0,spec.v1,i/nv);
     for(let j=0;j<=nt;j++){
       const th=lerp(spec.t0,spec.t1,j/nt)*D2R;
-      vPoint(v,th,p);vNormal(v,th,n);
+      vPoint(v,th,p,sh);vNormal(v,th,n,sh);
       const q=p.clone().add(n.multiplyScalar(0.016));
       pos.push(q.x,q.y,q.z);
       const a=TERR_ALPHA(i/nv,j/nt);
@@ -268,7 +284,7 @@ function buildPatch(spec){
 
 /* Atrial skirt: a shell that starts buried in the ventricular wall and swells
    outward over the base rim, fusing the ventricular mass into the atrial mass */
-function buildSkirt(nV=14,nT=112){
+function buildSkirt(sh,nV=14,nT=112){
   const v0=0.78,v1=0.995;
   const pos=[],nor=[],uv=[],idx=[],p=new THREE.Vector3(),n=new THREE.Vector3();
   for(let i=0;i<=nV;i++){
@@ -276,7 +292,7 @@ function buildSkirt(nV=14,nT=112){
     const off=-0.02+0.11*Math.pow(smooth(0,1,t),1.2);
     for(let j=0;j<=nT;j++){
       const th=j/nT*TAU;
-      vPoint(v,th,p);vNormal(v,th,n);
+      vPoint(v,th,p,sh);vNormal(v,th,n,sh);
       pos.push(p.x+n.x*off,p.y+n.y*off,p.z+n.z*off);
       nor.push(n.x,n.y,n.z);uv.push(j/nT*2,v*1.9);
     }
@@ -294,8 +310,8 @@ function buildSkirt(nV=14,nT=112){
 }
 
 /* ---------- components ---------- */
-const Ventricle=React.forwardRef(function Ventricle({ghost},ref){
-  const geo=useMemo(()=>buildVentricle(),[]);
+const Ventricle=React.forwardRef(function Ventricle({ghost,shape,tint},ref){
+  const geo=useMemo(()=>buildVentricle(shape),[shape.lvWall,shape.dilation]);
   const tex=useMemo(()=>getMyoTex(),[]);
   const mat=useMemo(()=>new THREE.MeshPhysicalMaterial({
     color:"#ffffff",map:tex,roughness:0.92,metalness:0,
@@ -304,6 +320,7 @@ const Ventricle=React.forwardRef(function Ventricle({ghost},ref){
     sheen:0.3,sheenRoughness:0.9,sheenColor:new THREE.Color("#c98d8d")
   }),[tex]);
   useEffect(()=>()=>{geo.dispose();mat.dispose()},[geo,mat]);
+  useEffect(()=>{if(tint)mat.color.copy(tint)},[mat,tint]);
   useFrame((s,dt)=>{
     const k=1-Math.pow(0.004,dt),target=ghost?0.2:1;
     if(ghost&&!mat.transparent){mat.transparent=true;mat.depthWrite=false;mat.needsUpdate=true;}
@@ -327,8 +344,8 @@ function Atria({mats}){
     geometry={geo} material={mats.atria}/>)}</>;
 }
 
-function AtrialSkirt({material,ghost}){
-  const geo=useMemo(()=>buildSkirt(),[]);
+function AtrialSkirt({material,ghost,shape}){
+  const geo=useMemo(()=>buildSkirt(shape),[shape.lvWall,shape.dilation]);
   useEffect(()=>()=>geo.dispose(),[geo]);
   useFrame((s,dt)=>{
     const k=1-Math.pow(0.004,dt),target=ghost?0.2:1;
@@ -418,8 +435,8 @@ function Artery({name,probabilities,selected,hovered,onSelect,onHover,bodyRef}){
   </group>;
 }
 
-function Territory({spec,color,strength}){
-  const geo=useMemo(()=>buildPatch(spec),[spec]);
+function Territory({spec,color,strength,shape}){
+  const geo=useMemo(()=>buildPatch(spec,shape),[spec,shape.lvWall,shape.dilation]);
   const mat=useMemo(()=>new THREE.MeshBasicMaterial({
     transparent:true,opacity:0,vertexColors:true,blending:THREE.AdditiveBlending,
     depthWrite:false,color:"#ffffff"
@@ -484,8 +501,10 @@ function Rig({controlsRef,apiRef}){
   return null;
 }
 
-function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoRotate,controlsRef,apiRef,onUserRotate}){
+function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoRotate,controlsRef,apiRef,onUserRotate,params}){
   const bodyRef=useRef(),beatRef=useRef();
+  const shape=useMemo(()=>({lvWall:params.lvWall,dilation:params.dilation}),[params.lvWall,params.dilation]);
+  const tint=useMemo(()=>{const c=new THREE.Color(1,1,1);if(params.risk!=null)c.lerp(new THREE.Color("#e0998f"),clamp(params.risk,0,1)*0.35);return c;},[params.risk]);
   const mats=useMemo(()=>{
     const tex=getMyoTex();
     const amap=tex.clone();amap.repeat.set(2,1.9);amap.needsUpdate=true;
@@ -502,15 +521,17 @@ function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoR
       pv:new THREE.MeshPhysicalMaterial({color:"#b2606b",roughness:0.62,clearcoat:0.14,clearcoatRoughness:0.6,envMapIntensity:0.5})
     };
   },[]);
+  useEffect(()=>{mats.atria.color.copy(tint)},[mats,tint]);
   useEffect(()=>()=>Object.values(mats).forEach(m=>{if(m.map)m.map.dispose();m.dispose()}),[mats]);
   useFrame((state,dt)=>{
     if(!beatRef.current)return;
-    const t=(state.clock.elapsedTime*0.92)%1;
+    const t=(state.clock.elapsedTime*params.rate)%1;
+    const amp=0.055*params.strength;
     const k=beat?Math.min(Math.exp(-Math.pow((t-0.05)/0.055,2))+0.35*Math.exp(-Math.pow((t-0.33)/0.07,2)),1.15):0;
     const s=beatRef.current.scale;
-    s.x+=((1-0.055*k)-s.x)*(1-Math.pow(0.002,dt));
-    s.y+=((1+0.02*k)-s.y)*(1-Math.pow(0.002,dt));
-    s.z+=((1-0.055*k)-s.z)*(1-Math.pow(0.002,dt));
+    s.x+=((1-amp*k)-s.x)*(1-Math.pow(0.002,dt));
+    s.y+=((1+0.02*params.strength*k)-s.y)*(1-Math.pow(0.002,dt));
+    s.z+=((1-amp*k)-s.z)*(1-Math.pow(0.002,dt));
   });
   const terrColor=n=>vesselColor(probabilities[n]??null);
   const terrStr=n=>{
@@ -535,10 +556,11 @@ function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoR
     <group position={[0,-0.45,0]}>
       <group rotation-x={TILT_X}>
         <group rotation-z={TILT_Z}>
+          <group scale={params.mass}>
           <group ref={beatRef}>
-            <Ventricle ref={bodyRef} ghost={ghost}/>
+            <Ventricle ref={bodyRef} ghost={ghost} shape={shape} tint={tint}/>
             <Atria mats={mats}/>
-            <AtrialSkirt material={mats.atria} ghost={ghost}/>
+            <AtrialSkirt material={mats.atria} ghost={ghost} shape={shape}/>
             <Auricles material={mats.atria}/>
             <Tube pts={FAT.ring.pts} r={FAT.ring.r} tub={80} rad={8} closed material={mats.fat}/>
             <Tube pts={FAT.iv.pts} r={FAT.iv.r} tub={56} rad={8} material={mats.fat}/>
@@ -547,7 +569,8 @@ function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoR
             {Object.keys(MAIN).map(n=><Artery key={n} name={n} probabilities={probabilities}
               selected={selected} hovered={hovered} onSelect={onSelect} onHover={onHover} bodyRef={bodyRef}/>)}
             <Veins material={mats.vein}/>
-            {Object.keys(TERR).map(n=><Territory key={"t"+n} spec={TERR[n]} color={terrColor(n)} strength={terrStr(n)}/>)}
+            {Object.keys(TERR).map(n=><Territory key={"t"+n} spec={TERR[n]} color={terrColor(n)} strength={terrStr(n)} shape={shape}/>)}
+          </group>
           </group>
         </group>
       </group>
@@ -559,7 +582,7 @@ function Scene({probabilities,selected,hovered,onSelect,onHover,beat,ghost,autoR
   </>;
 }
 
-export default function Heart3D({probabilities={},selectedVessel,hoveredVessel,onSelectVessel,onHoverVessel}){
+export default function Heart3D({probabilities={},values,selectedVessel,hoveredVessel,onSelectVessel,onHoverVessel}){
   const calm=typeof window!=="undefined"&&window.matchMedia&&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const [autoRotate,setAuto]=useState(!calm);
@@ -567,6 +590,7 @@ export default function Heart3D({probabilities={},selectedVessel,hoveredVessel,o
   const [ghost,setGhost]=useState(false);
   const [view,setView]=useState("ant");
   const controlsRef=useRef(),apiRef=useRef();
+  const params=useMemo(()=>heartParams(values,probabilities),[values,probabilities]);
   useEffect(()=>()=>{document.body.style.cursor=""},[]);
   const tools=[
     {t:"Auto-rotate",on:autoRotate,fn:()=>setAuto(v=>!v),i:"↻"},
@@ -577,7 +601,7 @@ export default function Heart3D({probabilities={},selectedVessel,hoveredVessel,o
   return <div className="stage3d">
     <Canvas dpr={[1,2]} gl={{antialias:true,alpha:true}} camera={{position:CAM,fov:34}}>
       <Scene probabilities={probabilities} selected={selectedVessel} hovered={hoveredVessel}
-        onSelect={onSelectVessel} onHover={onHoverVessel} beat={beat} ghost={ghost}
+        onSelect={onSelectVessel} onHover={onHoverVessel} beat={beat} ghost={ghost} params={params}
         autoRotate={autoRotate} controlsRef={controlsRef} apiRef={apiRef} onUserRotate={()=>setView(null)}/>
     </Canvas>
     <div className="hud-tools">
@@ -595,6 +619,6 @@ export default function Heart3D({probabilities={},selectedVessel,hoveredVessel,o
       <em>veins</em>
     </div>
     <div className="hud-hint">Drag to rotate · scroll to zoom · select a vessel</div>
-    <div className="hud-note">Risk-weighted rendering of vessel-level estimates. Blue vessels are venous anatomy (context only). Lesion location and severity are not predicted.</div>
+    <div className="hud-note">Educational illustration — shape/thickness reflect inputs, not a patient's anatomy. Lesion location and severity are not predicted.</div>
   </div>;
 }

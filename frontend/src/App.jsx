@@ -185,7 +185,7 @@ export default function App(){
               </div>
             </div>
             {schema?
-              <Heart3D probabilities={result?.probabilities||{}} selectedVessel={selected}
+              <Heart3D probabilities={result?.probabilities||{}} values={values} selectedVessel={selected}
                 hoveredVessel={hovered} onSelectVessel={setSelected} onHoverVessel={setHovered}/>
               :<div className="stage-fallback">{status==="error"?"Waiting on the API…":"Connecting to the API…"}</div>}
           </div>

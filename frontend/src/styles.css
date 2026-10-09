@@ -242,8 +242,8 @@ p{margin:0}
 .hud-views button:hover{color:#fff;border-color:var(--line-2)}
 .hud-views button.on{color:#fff;background:linear-gradient(120deg,#ff2e88,#9a7bff);
   border-color:transparent;font-weight:600}
-.hud-note{position:absolute;left:18px;bottom:12px;z-index:9;max-width:60%;font-size:16px;
-  line-height:1.55;color:#9d8fae;padding:6px 10px;border-radius:10px;border:1px solid var(--line);
+.hud-note{position:absolute;left:18px;bottom:12px;z-index:9;max-width:52%;font-size:13px;
+  line-height:1.45;color:#9d8fae;padding:4px 9px;border-radius:9px;border:1px solid var(--line);
   background:rgba(7,5,13,.62);backdrop-filter:blur(8px)}
 .hud-hint{position:absolute;right:16px;bottom:14px;z-index:9;font-size:16px;color:#9d8fae;
   font-family:var(--mono);padding:6px 11px;border-radius:999px;border:1px solid var(--line);
