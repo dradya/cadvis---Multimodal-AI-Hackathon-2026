@@ -2,7 +2,29 @@ import React,{useState}from"react";
 import {ClipboardList,RotateCcw}from"lucide-react";
 
 const TABS=[["risk","Risk"],["pres","Presentation"],["labs","Vitals & labs"],["test","ECG / echo"]];
-const RANGE={age:{min:0,max:120}};
+const RANGE={
+  age:{min:0,max:120},
+  pr:{min:0,max:300},
+  bp:{min:0,max:300},
+  bmi:{min:0,max:90,step:0.1},
+  ldl:{min:0,max:400},
+  hdl:{min:0,max:200},
+  tg:{min:0,max:1000},
+  fbs:{min:0,max:600},
+  hb:{min:0,max:25,step:0.1},
+  ef_tte:{min:0,max:100},
+  weight:{min:0,max:300},
+  length:{min:0,max:250},
+  cr:{min:0,max:15,step:0.1},
+  bun:{min:0,max:200},
+  esr:{min:0,max:150},
+  k:{min:0,max:10,step:0.1},
+  na:{min:0,max:200},
+  wbc:{min:0,max:50000,step:100},
+  lymph:{min:0,max:100},
+  neut:{min:0,max:100},
+  plt:{min:0,max:1000,step:5}
+};
 
 function Slider({label,unit,value,min,max,step=1,onChange}){
   const dec=step<1?1:0;
@@ -47,8 +69,8 @@ export default function Inputs({schema,values,onChange,onReset}){
   const S=(k,label,unit,step)=>{
     const f=F[k];
     const r=RANGE[k];
-    return <Slider label={label} unit={unit} step={step??1} value={values[k]??f.default}
-      min={r?.min??f.min??0} max={r?.max??f.max??1} onChange={v=>set(k,v)}/>;
+    return <Slider label={label} unit={unit} step={r?.step??step??1} value={values[k]??f.default}
+      min={r?.min??0} max={r?.max??f.max??1} onChange={v=>set(k,v)}/>;
   };
   const chip=(label,k,cat)=>({label,on:cat?values[k]==="Y":Number(values[k])===1,
     onClick:()=>set(k,cat?(values[k]==="Y"?"N":"Y"):(Number(values[k])===1?0:1))});
@@ -121,8 +143,8 @@ export default function Inputs({schema,values,onChange,onReset}){
             <span>More labs & body metrics</span><b>{adv?"–":"+"}</b>
           </button>
           {adv&&<div className="disc-body">{ADV.map(([k,l,u,st])=><Slider key={k} label={l} unit={u}
-            step={st} value={values[k]??F[k].default} min={F[k].min} max={F[k].max}
-            onChange={v=>set(k,v)}/>)}</div>}
+            step={RANGE[k]?.step??st} value={values[k]??F[k].default} min={RANGE[k]?.min??0}
+            max={RANGE[k]?.max??F[k].max} onChange={v=>set(k,v)}/>)}</div>}
         </div>
       </>}
 
