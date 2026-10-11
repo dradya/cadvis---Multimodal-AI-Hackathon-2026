@@ -1,5 +1,5 @@
 import React,{useState}from"react";
-import {RotateCcw}from"lucide-react";
+import {ClipboardList,RotateCcw}from"lucide-react";
 
 const TABS=[["risk","Risk"],["pres","Presentation"],["labs","Vitals & labs"],["test","ECG / echo"]];
 const RANGE={age:{min:0,max:120}};
@@ -64,6 +64,7 @@ export default function Inputs({schema,values,onChange,onReset}){
       <h2>Clinical inputs</h2>
       <button className="ghost-btn" title="Reset to dataset defaults" onClick={onReset}><RotateCcw size={13}/> Reset</button>
     </div>
+    <div className="nav-label"><ClipboardList size={13}/> Patient data <em>· fill each section</em></div>
     <div className="tabs">{TABS.map(([id,t])=><button key={id} className={tab===id?"on":""}
       onClick={()=>setTab(id)}>{t}</button>)}</div>
 

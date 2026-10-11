@@ -1,5 +1,5 @@
 import React,{useEffect,useMemo,useRef,useState}from"react";
-import {HeartPulse,AlertTriangle}from"lucide-react";
+import {Activity,HeartPulse,AlertTriangle}from"lucide-react";
 import Heart3D from"./Heart3D.jsx";
 import Inputs from"./Inputs.jsx";
 import Readout from"./Readout.jsx";
@@ -162,6 +162,7 @@ export default function App(){
               </div>
 
               <div className="deck-tabs">
+                <span className="deck-tabs-label"><Activity size={13}/> Results</span>
                 {DECK_TABS.map(([id,t])=><button key={id} className={deckTab===id?"on":""}
                   onClick={()=>setDeckTab(id)}>{t}</button>)}
               </div>
