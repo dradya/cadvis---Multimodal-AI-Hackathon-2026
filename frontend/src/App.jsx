@@ -199,7 +199,6 @@ export default function App(){
     </div>
 
     <footer>
-      <span>UCI Extension of Z-Alizadeh Sani dataset · CC BY 4.0</span>
       <span>CADViz · educational hackathon prototype · logistic models + linear SHAP</span>
     </footer>
 
